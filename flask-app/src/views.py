@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-# from customers import * TODO: fix this import to work
+from src.customers import customers  # TODO: fix this import to work
 
 views = Blueprint('views', __name__)
 
 
-# This is a base route
+# TODO: add booking for appointments
 @views.route('/', methods=['GET', 'POST'])
 def home():
     error = None
@@ -28,5 +28,5 @@ def get_appointments():
 
 @views.route('/customerview')
 def get_customersview():
-    data = 1  # TODO: add customer data from here
+    data = customers.get_customer_data()  # TODO: add customer data from here
     return render_template('customers.html', data=data)
