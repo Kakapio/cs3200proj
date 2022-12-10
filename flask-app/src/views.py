@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 views = Blueprint('views', __name__)
 
@@ -6,17 +6,11 @@ views = Blueprint('views', __name__)
 # we simply return a string.  
 @views.route('/')
 def home():
-    return ('<h1>Hello from your web app!!</h1>')
+    return render_template('index.html')
 
-# This is a sample route for the /test URI.  
-# as above, it just returns a simple string. 
-@views.route('/test')
-def tester():
-    return "<h1>this is a test!</h1>"
-
-@views.route('/monkey')
-def monkey():
-    return "<h1>this is a monkey!</h1>"
+@views.route('/admin')
+def get_admin():
+    return render_template('admin.html')
 
 @views.route('/appointments')
 def get_appointments():
@@ -37,8 +31,8 @@ def get_appointments():
     <td>Mary Smith</td>
   </tr>
     <tr>
-    <td>9/7/22 11:30 AM</td>
-        <td>Cut</td>
-        <td>Rodrick Heffley</td>
- </tr>
+    <td>9/3/22 12:30 PM</td>
+    <td>Color</td>
+    <td>Mary Smith</td>
+  </tr>
 </table>"""
