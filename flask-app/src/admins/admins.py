@@ -25,7 +25,6 @@ def add_customer():
     db.get_db().commit()
     return "Success!"
 
-# Route for handling the login page logic
 @admins.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
