@@ -1,44 +1,31 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, request, redirect, url_for
+from customers import customers
 
 views = Blueprint('views', __name__)
 
+
 # This is a base route
-# we simply return a string.  
-@views.route('/')
+@views.route('/', methods=['GET', 'POST'])
 def home():
-    return ('<h1>Hello from your web app!!</h1>')
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Try admin as your user and pass'
+        else:
+            return redirect(url_for('views.get_admin'))
+    return render_template('index.html', error=error)
 
-# This is a sample route for the /test URI.  
-# as above, it just returns a simple string. 
-@views.route('/test')
-def tester():
-    return "<h1>this is a test!</h1>"
 
-@views.route('/monkey')
-def monkey():
-    return "<h1>this is a monkey!</h1>"
+@views.route('/admin')
+def get_admin():
+    return render_template('admin.html')
 
-@views.route('/appointments')
+
+@views.route('/appointmentview')
 def get_appointments():
-    return """<table>
-  <tr>
-    <th>Time Slot</th>
-    <th>Service</th>
-    <th>Employee</th>
-  </tr>
-  <tr>
-    <td>9/1/22 10:30 AM</td>
-    <td>Color</td>
-    <td>Katie Li</td>
-  </tr>
-  <tr>
-    <td>9/3/22 12:30 PM</td>
-    <td>Color</td>
-    <td>Mary Smith</td>
-  </tr>
-    <tr>
-    <td>9/7/22 11:30 AM</td>
-        <td>Cut</td>
-        <td>Rodrick Heffley</td>
- </tr>
-</table>"""
+    return render_template('appointments.html')
+
+@views.route('/customerview')
+def get_customersview():
+    customers = get_customers()
+    return render_template('customers.html', data=customers)

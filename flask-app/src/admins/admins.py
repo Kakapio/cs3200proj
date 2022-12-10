@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response, current_app
+from flask import Blueprint, request, jsonify, make_response, current_app, redirect, render_template, url_for
 import json
 from src import db
 
@@ -24,3 +24,13 @@ def add_customer():
     cursor.execute(query)
     db.get_db().commit()
     return "Success!"
+
+@admins.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Try admin as your user and pass'
+        else:
+            return redirect(url_for('views.get_admin'))
+    return render_template('login.html', error=error)
