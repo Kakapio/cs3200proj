@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from customers import customers
+# from customers import * TODO: fix this import to work
 
 views = Blueprint('views', __name__)
 
@@ -25,7 +25,8 @@ def get_admin():
 def get_appointments():
     return render_template('appointments.html')
 
+
 @views.route('/customerview')
 def get_customersview():
-    customers = get_customers()
-    return render_template('customers.html', data=customers)
+    data = 1  # TODO: add customer data from here
+    return render_template('customers.html', data=data)
