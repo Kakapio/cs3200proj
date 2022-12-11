@@ -1,0 +1,33 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Customer View{% endblock %}
+{% block content %}
+
+<div class="container">
+    <table id="data" class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone #</th>
+            <th>Address</th>
+            <th>Credit Card</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in data %}
+        <tr>
+            <td>{{ user.customer_id }}</td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone_number }}</td>
+            <td>{{ user.street_address }}, {{ user.city }}, {{ user.state }}, {{ user.country }}</td>
+            <td>{{ user.credit_card }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<br>
+{% endblock %}
