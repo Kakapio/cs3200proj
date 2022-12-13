@@ -7,14 +7,14 @@ admins = Blueprint('admins', __name__)
 
 @admins.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Try admin as your user and pass'
+        json_response = []
+        if request.form['username'] == 'admin' and request.form['password'] == 'admin':
+            json_response.append("success")
         else:
-            return redirect(url_for('views.get_admin'))
-    return render_template('login.html', error=error)
+            json_response.append("failure")
 
+        return json_response
 
 @admins.route('/admin/add_customers', methods=['POST'])
 def add_customer():
