@@ -20,7 +20,7 @@ This repo contains a boilerplate setup for spinning up 2 docker containers:
 1. `conda activate webdev`
 1. `pip install flask flask-mysql flask-restful cryptography flask-login`
 
-Link to Demo:
+## Link to Demo:
 https://drive.google.com/file/d/1mYm_mGXBU-tMCUjnyEuMUWFhAjeF8lB1/view?usp=sharing 
 
 
