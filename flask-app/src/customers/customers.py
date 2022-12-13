@@ -5,7 +5,7 @@ from src import db
 customers = Blueprint('customers', __name__)
 
 
-# Get all customers from the DB
+# Get all customers data from the DB
 @customers.route('/customers', methods=['GET'])
 def get_customers():
     json_data = get_customer_data()
@@ -59,7 +59,7 @@ def get_empID_data():
 
 # Get simplified Employee details - Name and Phone number
 @customers.route('/customers/employee_data', methods=['GET'])
-def get_customer_select_data():
+def get_restricted_emp_data():
     cursor = db.get_db().cursor()
     cursor.execute('select first_name, last_name, phone_number from Employees')
     row_headers = [x[0] for x in cursor.description]

@@ -5,19 +5,7 @@ from src import db
 admins = Blueprint('admins', __name__)
 
 
-@admins.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        json_response = []
-        if request.form['username'] == 'teamquattro_owner' and request.form['password'] == 'quattropass':
-            json_response.append("success_owner")
-        elif request.form['username'] == 'teamquattro_admin' and request.form['password'] == 'quattropass':
-            json_response.append("success_admin")
-        else:
-            json_response.append("failure")
-
-        return json_response
-
+# Add customer information to the customer table
 @admins.route('/admin/add_customers', methods=['POST'])
 def add_customer():
     current_app.logger.info(request.form)
@@ -39,6 +27,7 @@ def add_customer():
     return "Success!"
 
 
+# Lookup the appointments table
 @admins.route('/admin/get_appointments', methods=['GET'])
 def get_appointments():
     cursor = db.get_db().cursor()
@@ -51,6 +40,7 @@ def get_appointments():
     return json_data
 
 
+# Lookup the customer's table
 @admins.route('/admin/get_customers', methods=['GET'])
 def admin_get_customer():
     cur = db.get_db().cursor()
