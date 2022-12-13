@@ -9,8 +9,10 @@ admins = Blueprint('admins', __name__)
 def login():
     if request.method == 'POST':
         json_response = []
-        if request.form['username'] == 'admin' and request.form['password'] == 'admin':
-            json_response.append("success")
+        if request.form['username'] == 'teamquattro_owner' and request.form['password'] == 'quattropass':
+            json_response.append("success_owner")
+        elif request.form['username'] == 'teamquattro_admin' and request.form['password'] == 'quattropass':
+            json_response.append("success_admin")
         else:
             json_response.append("failure")
 
