@@ -59,3 +59,13 @@ def admin_get_customer():
     for row in data:
         json_data.append(dict(zip(row_headers, row)))
     return json_data
+
+@admins.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Try admin as your user and pass'
+        else:
+            return redirect(url_for('views.get_admin'))
+    return render_template('login.html', error=error)
