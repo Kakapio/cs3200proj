@@ -23,4 +23,15 @@ This repo contains a boilerplate setup for spinning up 2 docker containers:
 ## Link to Demo:
 https://drive.google.com/file/d/1mYm_mGXBU-tMCUjnyEuMUWFhAjeF8lB1/view?usp=sharing 
 
+## Owner Login Page Info:
+
+Username: teamquattro_owner
+Password: quattropass
+
+## Admin Login Page Info:
+
+Username: teamquattro_admin
+Password: quattropass
+
+
 
